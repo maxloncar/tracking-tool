@@ -1,0 +1,217 @@
+@import "./fonts";
+@import "./colors";
+
+main {
+  width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .date {
+    display: flex;
+    margin-top: 84px;
+    margin-bottom: 86px;
+    align-items: center;
+
+    h2 {
+      @include nunito24();
+    }
+
+    img {
+      margin-right: 16px;
+    }
+  }
+
+  .start_stop {
+    display: flex;
+    float: right;
+    margin-bottom: 36px;
+
+    .start_new_timer {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      height: 36px;
+      width: 166px;
+      background: #ff5722;
+      border: 1px solid #ff5722;
+      box-sizing: border-box;
+      border-radius: 3px;
+      margin-right: 15px;
+
+      img {
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+
+      p {
+        @include nunito14();
+        color: $whiteColor;
+      }
+    }
+
+    .stop_all {
+      display: flex;
+      align-items: center;
+      height: 36px;
+      width: 113px;
+      background: linear-gradient(0deg, #181846, #181846);
+      border: 1px;
+      border-radius: 3px;
+      cursor: pointer;
+
+      img {
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+
+      p {
+        @include nunito14();
+        color: $whiteColor;
+      }
+    }
+  }
+
+  .timer_table {
+    margin-top: 158px;
+    width: 1170px;
+    height: fit-content;
+    box-sizing: border-box;
+    border-radius: 3px;
+
+    ul {
+      background: #f9f9fd;
+      border: 0.5px solid #ecedf5;
+      list-style: none;
+      display: flex;
+      @include nunito18Bold();
+
+      :first-child {
+        margin: 32px 118px 21px 30px;
+      }
+
+      :nth-child(2) {
+        margin: 32px 620px 21px 0;
+      }
+
+      :nth-child(3) {
+        margin: 32px 140px 21px 0;
+      }
+    }
+
+    .timer {
+      display: flex;
+
+      .time {
+        width: 20%;
+        padding: 22px 116px 24px 31px;
+        border: 0.5px solid #ecedf5;
+        border-top: none;
+        @include nunito18Timer();
+        color: #5f6b8a;
+      }
+
+      .description {
+        padding-top: 22px;
+        padding-bottom: 24px;
+        padding-left: 45px;
+        width: 70%;
+        border: 0.5px solid #ecedf5;
+        border-top: none;
+        border-left: none;
+
+        p {
+          @include nunito18Description();
+          color: #5f6b8a;
+        }
+      }
+
+      .action_buttons {
+        width: 25%;
+        border: 0.5px solid #ecedf5;
+        border-top: none;
+        border-left: none;
+
+        .play {
+          border: none;
+          background-color: $whiteColor;
+
+          img {
+            cursor: pointer;
+            margin: 22px 15px 24px 30px;
+          }
+        }
+
+        .pause {
+          border: none;
+          background-color: $whiteColor;
+
+          img {
+            cursor: pointer;
+            margin: 22px 15px 24px 30px;
+          }
+        }
+
+        .stop {
+          border: none;
+          background-color: $whiteColor;
+
+          img {
+            cursor: pointer;
+            margin: 22px 15px 24px 0px;
+          }
+        }
+
+        .edit {
+          border: none;
+          background-color: $whiteColor;
+
+          img {
+            cursor: pointer;
+            margin: 22px 15px 24px 0px;
+          }
+        }
+
+        .delete {
+          border: none;
+          background-color: $whiteColor;
+
+          img {
+            cursor: pointer;
+            margin: 22px 15px 24px 0px;
+          }
+        }
+      }
+    }
+  }
+
+  .page_numbers {
+    position: relative;
+    margin-top: 120px;
+    height: 37px;
+    width: 971px;
+    border-radius: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    button {
+      position: relative;
+      height: 33px;
+      width: 33px;
+      border-radius: 3px;
+      background: #c4c5d7;
+      color: $whiteColor;
+      border: none;
+      cursor: pointer;
+      margin: 1px;
+      top: -35%;
+    }
+
+    img {
+      cursor: pointer;
+      margin: 1px;
+    }
+  }
+}

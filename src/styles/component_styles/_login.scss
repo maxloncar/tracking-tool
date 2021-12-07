@@ -1,0 +1,116 @@
+@import "./fonts";
+@import "./colors";
+
+@mixin form {
+  background: $formBackgroundColor;
+  border: 0.5px solid $formBorderColor;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+main {
+  .login_form {
+    width: 400px;
+    height: 370px;
+    @include form();
+    margin: 154px auto 30px auto;
+    text-align: center;
+
+    h2 {
+      margin: 44px auto 49px auto;
+      text-align: center;
+      @include nunito24();
+    }
+    form {
+      input {
+        background: $whiteColor;
+        border-radius: 3px;
+        width: 330px;
+        height: 42px;
+      }
+  
+      input[type="text"] {
+        border: none;
+        outline: none;
+        padding: 13px 40px 12px 20px;
+        @include nunito18();
+        color: $placeholderColor;
+      }
+  
+      input[type="password"] {
+          border: none;
+          outline: none;
+          padding: 13px 40px 12px 20px;
+          @include nunito18();
+          color: $placeholderColor;
+        }
+  
+      .username {
+        margin-bottom: 30px;
+      }
+  
+      .password {
+        margin-left: 5%;
+        margin-bottom: 50px;
+      }
+  
+      .eye {
+        float: right;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+        left: -12%;
+        margin-top: 3%;
+      }
+
+      .danger {
+        color: red;
+        font-weight: bold;
+        padding: 2%;
+      }
+  
+      button {
+        width: 330px;
+        height: 36px;
+        background: $activeBorderColor;
+        border: 1px solid $activeBorderColor;
+        box-sizing: border-box;
+        border-radius: 3px;
+        @include nunito14();
+        color: $whiteColor;
+        cursor: pointer;
+      }
+    }
+
+    
+  }
+
+  .need_account {
+    width: 400px;
+    height: 92px;
+    display: flex;
+    @include form();
+    margin: 0 auto;
+
+    img {
+      margin: 14px 34px 0px 28px;
+    }
+
+    .register {
+      margin-top: 32px;
+
+      h3 {
+        @include nunito18-600();
+        color: #5f6b8a;
+        margin-bottom: 6px
+      }
+
+      p {
+        @include nunito14();
+        text-decoration-line: underline;
+        color: #ff5722;
+        cursor: pointer;
+      }
+    }
+  }
+}

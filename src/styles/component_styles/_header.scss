@@ -1,0 +1,100 @@
+@import "./fonts";
+@import "./colors";
+
+@mixin activeNavbar {
+  border-bottom: 5px solid $activeBorderColor;
+  color: $formBackgroundColor;
+  @include nunito15Bold();
+}
+
+header {
+  background: linear-gradient(0deg, $navigationColor, $navigationColor);
+  border-radius: 0px 0px 22px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 112px;
+
+  .logo {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-left: 45px;
+
+    h1 {
+      @include nunito24();
+      color: $whiteColor;
+      margin-left: 9px;
+      padding-bottom: 3%;
+    }
+
+    img {
+      cursor: pointer;
+    }
+  }
+
+  .nav_links {
+    list-style: none;
+
+    :nth-child(3) {
+      margin-right: 35px;
+      border: none;
+    }
+
+    .active {
+      .trackers {
+        @include activeNavbar();
+
+        img {
+          content: url(/src/assets/trackers-active.svg);
+        }
+      }
+
+      .history {
+        @include activeNavbar();
+
+        img {
+          content: url(/src/assets/history-active.svg);
+        }
+      }
+    }
+
+    li {
+      display: inline-block;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 49px 44px 39px 44px;
+      cursor: pointer;
+      color: $listItemColor;
+      @include nunito15();
+
+      .nav_link {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+      }
+
+      a {
+        list-style-type: none;
+        text-decoration: none;
+        color: $listItemColor;
+      }
+
+      img {
+        margin-right: 11px;
+      }
+    }
+
+    .trackers {
+      border-bottom: 5px solid $listItemColor;
+      border-radius: 4px 0px 0px 4px;
+    }
+
+    .history {
+      border-bottom: 5px solid $listItemColor;
+      border-radius: 0px 4px 4px 0px;
+    }
+  }
+}
