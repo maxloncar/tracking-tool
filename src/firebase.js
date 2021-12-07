@@ -3,12 +3,12 @@ import "firebase/compat/auth";
 import { getFirestore } from "@firebase/firestore";
 
 const app = firebase.initializeApp({
-  apiKey: "AIzaSyAPwMBNDUaplzGdd4YkMNkU7RZn8r1xEdo",
-  authDomain: "tracking-tool-4ed79.firebaseapp.com",
-  projectId: "tracking-tool-4ed79",
-  storageBucket: "tracking-tool-4ed79.appspot.com",
-  messagingSenderId: "676235322829",
-  appId: "1:676235322829:web:614eb5350a72dd2d281084"
+  apiKey: "AIzaSyChBY4lpkC8AMNXtVSUI_wHo7mo4mkBZVg",
+  authDomain: "tracking-tool-561c2.firebaseapp.com",
+  projectId: "tracking-tool-561c2",
+  storageBucket: "tracking-tool-561c2.appspot.com",
+  messagingSenderId: "1080414875677",
+  appId: "1:1080414875677:web:c887f6a693a419818ed6f4",
 });
 
 export const auth = app.auth();
