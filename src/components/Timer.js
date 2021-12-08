@@ -69,28 +69,12 @@ export default function Timer({
       )}
       {!timerOn && (
         <div className="time">
+          <span>{hours === 0 ? "00" : hours > 9 ? hours : "0" + hours}:</span>
           <span>
-            {hours === 0
-              ? "00"
-              : Math.floor(time / 3600000) > 9
-              ? Math.floor(time / 3600000)
-              : "0" + Math.floor(time / 3600000)}
-            :
+            {minutes === 0 ? "00" : minutes > 9 ? minutes : "0" + minutes}:
           </span>
           <span>
-            {minutes === 0
-              ? "00"
-              : Math.floor(time / 60000) > 9
-              ? Math.floor(time / 60000)
-              : "0" + Math.floor(time / 60000)}
-            :
-          </span>
-          <span>
-            {seconds === 0
-              ? "00"
-              : Math.floor(time / 1000) > 9
-              ? Math.floor(time / 1000)
-              : "0" + Math.floor(time / 1000)}
+            {seconds === 0 ? "00" : seconds > 9 ? seconds : "0" + seconds}
           </span>
         </div>
       )}
