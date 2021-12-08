@@ -27,7 +27,15 @@ export default function TimerTable() {
         <li>Actions</li>
       </ul>
       {timers.map((timer) => (
-        <Timer key={timer.id} id={timer.id} description={timer.description} date={timer.date} />
+        <Timer
+          key={timer.id}
+          id={timer.id}
+          description={timer.description}
+          date={timer.date}
+          hours={timer.hours}
+          minutes={timer.minutes}
+          seconds={timer.seconds}
+        />
       ))}
     </div>
   );
