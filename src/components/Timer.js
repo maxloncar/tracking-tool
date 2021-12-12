@@ -20,17 +20,20 @@ export default function Timer({
   const [timerOn, setTimerOn] = useState(false);
   const { currentUser } = useAuth();
 
-  const handleEdit = async (id) => {
-    const description = prompt("Enter a description for timer: ");
+  const handleEdit = async (id, oldDescription) => {
+    const description = prompt(
+      "Enter a description for timer: ",
+      oldDescription
+    );
     const docRef = doc(db, `users/${currentUser.uid}/timers`, id);
     const payload = { description, date, hours, minutes, seconds };
     setDoc(docRef, payload);
   };
 
   const saveTime = async (id) => {
-    const seconds = Math.floor(time / 1000);
-    const minutes = Math.floor(time / 60000);
-    const hours = Math.floor(time / 3600000);
+    const seconds = Math.floor(time);
+    const minutes = Math.floor(time / 60);
+    const hours = Math.floor(time / 3600);
     console.log(seconds);
     const docRef = doc(db, `users/${currentUser.uid}/timers`, id);
     const payload = {
@@ -48,8 +51,8 @@ export default function Timer({
 
     if (timerOn) {
       interval = setInterval(() => {
-        setTime((prevTime) => prevTime + 10);
-      }, 10);
+        setTime((prevTime) => (prevTime += 1));
+      }, 1000);
     } else {
       clearInterval(interval);
     }
@@ -62,9 +65,9 @@ export default function Timer({
     <div className="timer">
       {timerOn && (
         <div className="time">
-          <span>{("0" + Math.floor((time / 3600000) % 60)).slice(-2)}:</span>
-          <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
-          <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}</span>
+          <span>{"0" + Math.floor((time / 3600) % 60)}:</span>
+          <span>{"0" + Math.floor((time / 60) % 60)}:</span>
+          <span>{"0" + Math.floor(time % 60)}</span>
         </div>
       )}
       {!timerOn && (
@@ -107,7 +110,11 @@ export default function Timer({
           />
         </button>
         <button className="edit">
-          <img src={edit} alt="Edit icon" onClick={() => handleEdit(id)} />
+          <img
+            src={edit}
+            alt="Edit icon"
+            onClick={() => handleEdit(id, description)}
+          />
         </button>
         <button className="delete">
           <img src={deleteIcon} alt="Delete icon" />

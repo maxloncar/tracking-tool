@@ -10,14 +10,16 @@ main {
     display: flex;
     margin-top: 84px;
     margin-bottom: 86px;
-    align-items: center;
-
-    h2 {
-      @include nunito24();
-    }
 
     img {
       margin-right: 16px;
+    }
+
+    h2 {
+      @include nunito24();
+      text-align: center;
+      align-items: center;
+      margin: auto 0;
     }
   }
 
@@ -86,15 +88,15 @@ main {
       @include nunito18Bold();
 
       :first-child {
-        margin: 32px 118px 21px 30px;
+        padding: 32px 118px 21px 30px;
       }
 
       :nth-child(2) {
-        margin: 32px 620px 21px 0;
+        padding: 32px 620px 21px 0px;
       }
 
       :nth-child(3) {
-        margin: 32px 140px 21px 0;
+        padding: 32px 140px 21px 0px;
       }
     }
 
@@ -111,9 +113,7 @@ main {
       }
 
       .description {
-        padding-top: 22px;
-        padding-bottom: 24px;
-        padding-left: 45px;
+        padding: 22px 30px 24px 30px;
         width: 70%;
         border: 0.5px solid #ecedf5;
         border-top: none;

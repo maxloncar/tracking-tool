@@ -186,7 +186,7 @@ main .login_form form input[type="password"] {
   color: #5F6B8A;
 }
 
-main .login_form form .username {
+main .login_form form .email {
   margin-bottom: 30px;
 }
 
@@ -283,9 +283,10 @@ main .date {
   display: flex;
   margin-top: 84px;
   margin-bottom: 86px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+}
+
+main .date img {
+  margin-right: 16px;
 }
 
 main .date h2 {
@@ -294,10 +295,11 @@ main .date h2 {
   font-weight: bold;
   font-size: 24px;
   line-height: 17px;
-}
-
-main .date img {
-  margin-right: 16px;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: auto 0;
 }
 
 main .start_stop {
@@ -396,15 +398,15 @@ main .timer_table ul {
 }
 
 main .timer_table ul :first-child {
-  margin: 32px 118px 21px 30px;
+  padding: 32px 118px 21px 30px;
 }
 
 main .timer_table ul :nth-child(2) {
-  margin: 32px 620px 21px 0;
+  padding: 32px 620px 21px 0px;
 }
 
 main .timer_table ul :nth-child(3) {
-  margin: 32px 140px 21px 0;
+  padding: 32px 140px 21px 0px;
 }
 
 main .timer_table .timer {
@@ -427,9 +429,7 @@ main .timer_table .timer .time {
 }
 
 main .timer_table .timer .description {
-  padding-top: 22px;
-  padding-bottom: 24px;
-  padding-left: 45px;
+  padding: 22px 30px 24px 30px;
   width: 70%;
   border: 0.5px solid #ecedf5;
   border-top: none;
@@ -660,19 +660,19 @@ main .history_table ul {
 }
 
 main .history_table ul :first-child {
-  margin: 32px 181px 21px 30px;
+  margin: 32px 176px 21px 30px;
 }
 
 main .history_table ul :nth-child(2) {
-  margin: 32px 382px 21px 0;
+  margin: 32px 345px 21px 30px;
 }
 
 main .history_table ul :nth-child(3) {
-  margin: 32px 130px 21px 0;
+  margin: 32px 80px 21px 30px;
 }
 
 main .history_table ul :nth-child(4) {
-  margin: 32px 140px 21px 0;
+  margin: 32px 110px 21px 30px;
 }
 
 main .history_table .history_timer {
@@ -682,9 +682,7 @@ main .history_table .history_timer {
 }
 
 main .history_table .history_timer .time {
-  padding-top: 22px;
-  padding-bottom: 24px;
-  padding-left: 45px;
+  padding: 22px 30px 24px 30px;
   width: 24%;
   border: 0.5px solid #ecedf5;
   border-top: none;
@@ -700,9 +698,7 @@ main .history_table .history_timer .time p {
 }
 
 main .history_table .history_timer .description {
-  padding-top: 22px;
-  padding-bottom: 24px;
-  padding-left: 40px;
+  padding: 22px 30px 24px 30px;
   width: 47%;
   border: 0.5px solid #ecedf5;
   border-top: none;

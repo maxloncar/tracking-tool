@@ -9,14 +9,14 @@ export default function TimerTable() {
   const { currentUser } = useAuth();
   const [timers, setTimers] = useState([]);
 
-  useEffect(() =>
-    onSnapshot(
-      collection(db, `users/${currentUser.uid}/timers`),
-      (snapshot) => {
-        setTimers(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      },
-      []
-    )
+  useEffect(
+    () =>
+      onSnapshot(
+        collection(db, `users/${currentUser.uid}/timers`),
+        (snapshot) =>
+          setTimers(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      ),
+    [currentUser.uid]
   );
 
   return (

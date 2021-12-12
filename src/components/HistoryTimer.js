@@ -15,8 +15,11 @@ export default function HistoryTimer({
 }) {
   const { currentUser } = useAuth();
 
-  const handleEdit = async (id) => {
-    const description = prompt("Enter a description for timer: ");
+  const handleEdit = async (id, oldDescription) => {
+    const description = prompt(
+      "Enter a description for timer: ",
+      oldDescription
+    );
     const docRef = doc(db, `users/${currentUser.uid}/timers`, id);
     const payload = { description, date, hours, minutes, seconds };
     setDoc(docRef, payload);
@@ -37,7 +40,11 @@ export default function HistoryTimer({
       </div>
       <div className="action_buttons">
         <button className="edit">
-          <img src={edit} alt="Edit icon" onClick={() => handleEdit(id)} />
+          <img
+            src={edit}
+            alt="Edit icon"
+            onClick={() => handleEdit(id, description)}
+          />
         </button>
         <button className="delete">
           <img src={deleteIcon} alt="Delete icon" />

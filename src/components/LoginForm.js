@@ -15,8 +15,8 @@ export default function LoginForm() {
     return () => {
       setError();
       setLoading();
-    }
-  }, [])
+    };
+  }, []);
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -29,8 +29,9 @@ export default function LoginForm() {
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
       navigate("/");
-    } catch {
-      setError("Failed to login.");
+    } catch (err) {
+      let errorCode = err.code.split("auth/")[1];
+      setError(errorCode);
     }
     setLoading(false);
   }
@@ -40,11 +41,11 @@ export default function LoginForm() {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input
-          className="username"
+          className="email"
           type="text"
-          id="username"
-          name="username"
-          placeholder="Username"
+          id="email"
+          name="email"
+          placeholder="Email"
           ref={emailRef}
           required
         />
@@ -54,6 +55,7 @@ export default function LoginForm() {
           id="password"
           name="password"
           placeholder="Password"
+          autoComplete="on"
           ref={passwordRef}
           required
         />

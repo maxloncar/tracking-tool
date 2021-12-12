@@ -29,8 +29,9 @@ export default function RegisterForm() {
       setLoading(true);
       await register(emailRef.current.value, passwordRef.current.value);
       navigate("/");
-    } catch {
-      setError("Failed to create an account.");
+    } catch (err) {
+      let errorCode = err.code.split("auth/")[1];
+      setError(errorCode);
     }
     setLoading(false);
   }
@@ -40,11 +41,11 @@ export default function RegisterForm() {
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <input
-          className="username"
+          className="email"
           type="text"
-          id="username"
-          name="username"
-          placeholder="Username"
+          id="email"
+          name="email"
+          placeholder="Email"
           ref={emailRef}
           required
         />
@@ -54,6 +55,7 @@ export default function RegisterForm() {
           id="password"
           name="password"
           placeholder="Password"
+          autoComplete="on"
           ref={passwordRef}
           required
         />
