@@ -36,10 +36,12 @@ export default function Timer({
   };
 
   const saveTime = async (id) => {
+    const docRef = doc(db, `users/${currentUser.uid}/timers`, id);
     const seconds = Math.floor(time);
     const minutes = Math.floor(time / 60);
     const hours = Math.floor(time / 3600);
-    const docRef = doc(db, `users/${currentUser.uid}/timers`, id);
+    const docSnap = await getDoc(docRef);
+    let date = docSnap.data().date;
     const payload = {
       description: description,
       date: date,

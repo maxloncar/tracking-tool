@@ -4,10 +4,37 @@ import { useEffect, useState } from "react";
 import { onSnapshot, collection } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../contexts/AuthContext";
+import ReactPaginate from "react-paginate";
+import caretleft from "../assets/caretleft.svg";
+import caretright from "../assets/caretright.svg";
 
 export default function TimerTable() {
   const { currentUser } = useAuth();
   const [timers, setTimers] = useState([]);
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const timersPerPage = 4;
+  const pagesVisited = pageNumber * timersPerPage;
+
+  const displayTimers = timers
+    .slice(pagesVisited, pagesVisited + timersPerPage)
+    .map((timer) => (
+      <Timer
+        key={timer.id}
+        id={timer.id}
+        description={timer.description}
+        date={new Date(timer.date.seconds * 1000).toLocaleDateString("hr-HR")}
+        hours={timer.hours}
+        minutes={timer.minutes}
+        seconds={timer.seconds}
+      />
+    ));
+
+  const pageCount = Math.ceil(timers.length / timersPerPage);
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   useEffect(
     () =>
@@ -26,17 +53,19 @@ export default function TimerTable() {
         <li>Description</li>
         <li>Actions</li>
       </ul>
-      {timers.map((timer) => (
-        <Timer
-          key={timer.id}
-          id={timer.id}
-          description={timer.description}
-          date={new Date(timer.date.seconds * 1000).toLocaleDateString("hr-HR")}
-          hours={timer.hours}
-          minutes={timer.minutes}
-          seconds={timer.seconds}
-        />
-      ))}
+      {displayTimers}
+      <ReactPaginate
+        previousLabel={<img src={caretleft} alt="Caretleft" />}
+        nextLabel={<img src={caretright} alt="Caretright" />}
+        pageCount={pageCount}
+        onPageChange={changePage}
+        containerClassName="page_numbers"
+        previousLinkClassName="previousBttn"
+        nextLinkClassName="nextBttn"
+        disabledClassName="paginationDisabled"
+        activeClassName="pageBttnActive"
+        pageClassName="pageBttn"
+      />
     </div>
   );
 }

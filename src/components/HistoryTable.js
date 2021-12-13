@@ -8,6 +8,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import close from "../assets/close.svg";
 import date from "../assets/calendar.svg";
+import ReactPaginate from "react-paginate";
+import caretleft from "../assets/caretleft.svg";
+import caretright from "../assets/caretright.svg";
 
 export default function HistoryTable() {
   const { currentUser } = useAuth();
@@ -15,6 +18,56 @@ export default function HistoryTable() {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [searchTerm, setSearchTerm] = useState("");
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const timersPerPage = 4;
+  const pagesVisited = pageNumber * timersPerPage;
+
+  const displayTimers = timers
+    .slice(pagesVisited, pagesVisited + timersPerPage)
+    .filter((timer) => {
+      let currentDate = timer.date.seconds;
+      let startingDate = new Date(startDate / 1000).getTime();
+      let endingDate = new Date(endDate / 1000).getTime();
+      if (searchTerm.trim().length === 0 && !startingDate && !endingDate) {
+        return timer;
+      } else if (currentDate >= startingDate && currentDate <= endingDate) {
+        if (
+          searchTerm.trim().length !== 0 &&
+          timer.description.toLowerCase().includes(searchTerm.toLowerCase())
+        ) {
+          return timer;
+        } else if (searchTerm.trim().length !== 0) {
+          return false;
+        }
+        return timer;
+      } else if (
+        timer.description.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        !startingDate &&
+        !endingDate
+      ) {
+        return timer;
+      }
+
+      return false;
+    })
+    .map((timer) => (
+      <HistoryTimer
+        key={timer.id}
+        id={timer.id}
+        description={timer.description}
+        date={new Date(timer.date.seconds * 1000).toLocaleDateString("hr-HR")}
+        hours={timer.hours}
+        minutes={timer.minutes}
+        seconds={timer.seconds}
+      />
+    ));
+
+  const pageCount = Math.ceil(timers.length / timersPerPage);
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   useEffect(
     () =>
@@ -38,7 +91,7 @@ export default function HistoryTable() {
               onChange={(date) => setStartDate(date)}
               dateFormat="dd.MM.yyyy."
             />
-            <img src={date} alt="Date Icon" />
+            <img src={date} alt="Date Icon" onClick={() => setStartDate()} />
           </div>
         </div>
         <div className="end_date">
@@ -49,7 +102,7 @@ export default function HistoryTable() {
               onChange={(date) => setEndDate(date)}
               dateFormat="dd.MM.yyyy."
             />
-            <img src={date} alt="Date Icon" />
+            <img src={date} alt="Date Icon" onClick={() => setEndDate()} />
           </div>
         </div>
         <div className="description_contains">
@@ -77,57 +130,19 @@ export default function HistoryTable() {
           <li>Time tracked</li>
           <li>Actions</li>
         </ul>
-        {timers
-          .filter((timer) => {
-            let currentDate = timer.date.seconds;
-            let startingDate = new Date(startDate / 1000).getTime();
-            let endingDate = new Date(endDate / 1000).getTime();
-            if (
-              searchTerm.trim().length === 0 &&
-              !startingDate &&
-              !endingDate
-            ) {
-              return timer;
-            } else if (
-              currentDate >= startingDate &&
-              currentDate <= endingDate
-            ) {
-              if (
-                searchTerm.trim().length !== 0 &&
-                timer.description
-                  .toLowerCase()
-                  .includes(searchTerm.toLowerCase())
-              ) {
-                return timer;
-              } else if (searchTerm.trim().length !== 0) {
-                return false;
-              }
-              return timer;
-            } else if (
-              timer.description
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase()) &&
-              !startingDate &&
-              !endingDate
-            ) {
-              return timer;
-            }
-
-            return false;
-          })
-          .map((timer) => (
-            <HistoryTimer
-              key={timer.id}
-              id={timer.id}
-              description={timer.description}
-              date={new Date(timer.date.seconds * 1000).toLocaleDateString(
-                "hr-HR"
-              )}
-              hours={timer.hours}
-              minutes={timer.minutes}
-              seconds={timer.seconds}
-            />
-          ))}
+        {displayTimers}
+        <ReactPaginate
+          previousLabel={<img src={caretleft} alt="Caretleft" />}
+          nextLabel={<img src={caretright} alt="Caretright" />}
+          pageCount={pageCount}
+          onPageChange={changePage}
+          containerClassName="page_numbers"
+          previousLinkClassName="previousBttn"
+          nextLinkClassName="nextBttn"
+          disabledClassName="paginationDisabled"
+          activeClassName="pageBttnActive"
+          pageClassName="pageBttn"
+        />
       </div>
     </>
   );

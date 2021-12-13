@@ -173,5 +173,60 @@ main {
         }
       }
     }
+
+    .page_numbers {
+      display: flex;
+      margin-top: 120px;
+      height: 37px;
+      width: 971px;
+      list-style: none;
+      border-radius: 0px;
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: $whiteColor;
+      border: none;
+
+      a {
+        padding: 0px;
+        margin: 0px;
+      }
+
+      li {
+        padding: 0px;
+        margin: 0px;
+      }
+
+      img {
+        padding: 0px;
+        margin: 0px;
+        cursor: pointer;
+      }
+
+      .pageBttn {
+        position: relative;
+        height: 33px;
+        width: 33px;
+        border-radius: 3px;
+        cursor: pointer;
+        align-items: center;
+        align-content: center;
+        @include nunito14();
+
+        a {
+          display: inline-block;
+          line-height: 33px;
+          height: 33px;
+          width: 33px;
+        }
+      }
+
+      .pageBttnActive {
+        background: #c4c5d7;
+        color: $whiteColor;
+      }
+    }
   }
 }

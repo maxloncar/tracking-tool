@@ -76,7 +76,7 @@ main {
   .timer_table {
     margin-top: 158px;
     width: 1170px;
-    height: fit-content;
+    height: 400px;
     box-sizing: border-box;
     border-radius: 3px;
 
@@ -182,36 +182,58 @@ main {
         }
       }
     }
-  }
 
-  .page_numbers {
-    position: relative;
-    margin-top: 120px;
-    height: 37px;
-    width: 971px;
-    border-radius: 0px;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    button {
-      position: relative;
-      height: 33px;
-      width: 33px;
-      border-radius: 3px;
-      background: #c4c5d7;
-      color: $whiteColor;
+    .page_numbers {
+      display: flex;
+      margin-top: 120px;
+      height: 37px;
+      width: 971px;
+      list-style: none;
+      border-radius: 0px;
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: $whiteColor;
       border: none;
-      cursor: pointer;
-      margin: 1px;
-      top: -35%;
-    }
 
-    img {
-      cursor: pointer;
-      margin: 1px;
+      a {
+        padding: 0px;
+        margin: 0px;
+      }
+
+      li {
+        padding: 0;
+      }
+
+      img {
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .pageBttn {
+        position: relative;
+        height: 33px;
+        width: 33px;
+        border-radius: 3px;
+        cursor: pointer;
+        align-items: center;
+        align-content: center;
+        @include nunito14();
+
+        a {
+          display: inline-block;
+          line-height: 33px;
+          height: 33px;
+          width: 33px;
+        }
+      }
+
+      .pageBttnActive {
+        background: #c4c5d7;
+        color: $whiteColor;
+      }
     }
   }
 }
