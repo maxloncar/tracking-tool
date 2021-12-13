@@ -6,7 +6,6 @@ import StopAllButton from "../components/StopAllButton";
 import TimerTable from "../components/TimerTable";
 
 function TrackersPage() {
-  const write = () => console.log("hello");
   return (
     <>
       <Navigation />
