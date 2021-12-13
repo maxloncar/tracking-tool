@@ -26,6 +26,9 @@ export default function Timer({
       "Enter a description for timer: ",
       oldDescription
     );
+    if (description === null) {
+      return;
+    }
     const docSnap = await getDoc(docRef);
     let date = docSnap.data().date;
     const payload = { description, date, hours, minutes, seconds };
