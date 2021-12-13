@@ -31,7 +31,7 @@ export default function TimerTable() {
           key={timer.id}
           id={timer.id}
           description={timer.description}
-          date={timer.date}
+          date={new Date(timer.date.seconds * 1000).toLocaleDateString("hr-HR")}
           hours={timer.hours}
           minutes={timer.minutes}
           seconds={timer.seconds}

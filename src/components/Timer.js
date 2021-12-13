@@ -4,7 +4,7 @@ import pause from "../assets/pause.svg";
 import stop from "../assets/stop.svg";
 import deleteIcon from "../assets/delete.svg";
 import edit from "../assets/edit.svg";
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -21,11 +21,13 @@ export default function Timer({
   const { currentUser } = useAuth();
 
   const handleEdit = async (id, oldDescription) => {
+    const docRef = doc(db, `users/${currentUser.uid}/timers`, id);
     const description = prompt(
       "Enter a description for timer: ",
       oldDescription
     );
-    const docRef = doc(db, `users/${currentUser.uid}/timers`, id);
+    const docSnap = await getDoc(docRef);
+    let date = docSnap.data().date;
     const payload = { description, date, hours, minutes, seconds };
     setDoc(docRef, payload);
   };
@@ -34,7 +36,6 @@ export default function Timer({
     const seconds = Math.floor(time);
     const minutes = Math.floor(time / 60);
     const hours = Math.floor(time / 3600);
-    console.log(seconds);
     const docRef = doc(db, `users/${currentUser.uid}/timers`, id);
     const payload = {
       description: description,
@@ -65,9 +66,23 @@ export default function Timer({
     <div className="timer">
       {timerOn && (
         <div className="time">
-          <span>{"0" + Math.floor((time / 3600) % 60)}:</span>
-          <span>{"0" + Math.floor((time / 60) % 60)}:</span>
-          <span>{"0" + Math.floor(time % 60)}</span>
+          <span>
+            {Math.floor((time / 3600) % 60) > 9
+              ? Math.floor((time / 3600) % 60)
+              : "0" + Math.floor((time / 3600) % 60)}
+            :
+          </span>
+          <span>
+            {Math.floor((time / 60) % 60) > 9
+              ? Math.floor((time / 60) % 60)
+              : "0" + Math.floor((time / 60) % 60)}
+            :
+          </span>
+          <span>
+            {Math.floor(time % 60) > 9
+              ? Math.floor(time % 60)
+              : "0" + Math.floor(time % 60)}
+          </span>
         </div>
       )}
       {!timerOn && (
@@ -95,7 +110,9 @@ export default function Timer({
             <img
               src={pause}
               alt="Pause icon"
-              onClick={() => setTimerOn(false)}
+              onClick={() => {
+                setTimerOn(false);
+              }}
             />
           </button>
         )}

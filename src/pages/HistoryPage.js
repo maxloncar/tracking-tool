@@ -1,21 +1,18 @@
-import React from 'react'
-import Filter from '../components/Filter';
-import HistoryTable from '../components/HistoryTable';
+import React from "react";
+import HistoryTable from "../components/HistoryTable";
 import Navigation from "../components/Navigation";
-import PageNumbers from '../components/PageNumbers';
+import PageNumbers from "../components/PageNumbers";
 
 function HistoryPage() {
-    return (
-        <>
-            <Navigation />
-            <main>
-                <h2>Trackers History</h2>
-                <Filter />
-                <HistoryTable />
-                <PageNumbers />
-            </main>
-        </>
-    )
+  return (
+    <>
+      <Navigation />
+      <main>
+        <HistoryTable />
+        <PageNumbers />
+      </main>
+    </>
+  );
 }
 
 export default HistoryPage;
