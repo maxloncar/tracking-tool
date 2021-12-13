@@ -13,7 +13,7 @@ function TrackersPage() {
         <Datetime />
         <div className="start_stop">
           <StartNewTimerButton />
-          <StopAllButton onClick={write} />
+          <StopAllButton />
         </div>
         <TimerTable />
       </main>

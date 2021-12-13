@@ -8,14 +8,7 @@ import { setDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../contexts/AuthContext";
 
-export default function Timer({
-  id,
-  description,
-  date,
-  hours,
-  minutes,
-  seconds,
-}) {
+export default function Timer({ id, description, hours, minutes, seconds }) {
   const [time, setTime] = useState(0);
   const [timerOn, setTimerOn] = useState(false);
   const { currentUser } = useAuth();
